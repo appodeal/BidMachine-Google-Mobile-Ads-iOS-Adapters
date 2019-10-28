@@ -149,12 +149,12 @@
     [self.view addSubview:bannerView];
     bannerView.translatesAutoresizingMaskIntoConstraints = false;
     if (@available(iOS 11, *)) {
-        [bannerView.bottomAnchor constraintEqualToAnchor:bannerView.safeAreaLayoutGuide.bottomAnchor].active = YES;
+        [bannerView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor].active = YES;
     } else {
-        [bannerView.bottomAnchor constraintEqualToAnchor:bannerView.bottomAnchor].active = YES;
+        [bannerView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
     }
-    [bannerView.leftAnchor constraintEqualToAnchor:bannerView.leftAnchor].active = YES;
-    [bannerView.rightAnchor constraintEqualToAnchor:bannerView.rightAnchor].active = YES;
+    [bannerView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
+    [bannerView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
     [bannerView.heightAnchor constraintEqualToConstant:bannerView.adSize.size.height].active = YES;
 }
 
