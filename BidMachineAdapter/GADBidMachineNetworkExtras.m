@@ -38,6 +38,7 @@
     extras[kBidMachineCoppa]                = self.coppa ? @YES : nil;
     extras[kBidMachinePriceFloors]          = self.priceFloors;
     extras[kBidMachineHeaderBiddingConfig]  = self.headerBiddingConfigsJsonArray;
+    extras[kBidMachineBidId]                = self.bidID;
     return extras;
 }
 

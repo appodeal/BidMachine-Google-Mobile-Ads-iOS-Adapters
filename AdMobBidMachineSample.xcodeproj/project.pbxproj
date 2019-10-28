@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		4216C1AF22FD9A2F0030C5DA /* GADBidMachineTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4216C1AE22FD9A2F0030C5DA /* GADBidMachineTransformer.m */; };
 		4216C1B322FD9CEB0030C5DA /* GADBidMachineHeaderBiddingConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 4216C1B222FD9CEB0030C5DA /* GADBidMachineHeaderBiddingConfig.m */; };
+		42E555672366EDC70089C917 /* AdManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E555662366EDC70089C917 /* AdManagerViewController.m */; };
+		42E5556B2366F2BC0089C917 /* DFPBidMachineFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 42E5556A2366F2BC0089C917 /* DFPBidMachineFetcher.m */; };
 		43AAFF1288CBB7384593ACAE /* libPods-BidMachineAdapter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE23AE142768802690EC2630 /* libPods-BidMachineAdapter.a */; };
 		AF1F086CF84CD32DECF3A9F0 /* libPods-AdMobBidMachineSample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE6847432E93E543FB66D85 /* libPods-AdMobBidMachineSample.a */; };
 		D9129673228AA8D1002A8C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D9129672228AA8D1002A8C51 /* AppDelegate.m */; };
@@ -43,6 +45,10 @@
 		4216C1AE22FD9A2F0030C5DA /* GADBidMachineTransformer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADBidMachineTransformer.m; sourceTree = "<group>"; };
 		4216C1B122FD9CEB0030C5DA /* GADBidMachineHeaderBiddingConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADBidMachineHeaderBiddingConfig.h; sourceTree = "<group>"; };
 		4216C1B222FD9CEB0030C5DA /* GADBidMachineHeaderBiddingConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GADBidMachineHeaderBiddingConfig.m; sourceTree = "<group>"; };
+		42E555652366EDC70089C917 /* AdManagerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdManagerViewController.h; sourceTree = "<group>"; };
+		42E555662366EDC70089C917 /* AdManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdManagerViewController.m; sourceTree = "<group>"; };
+		42E555692366F2BC0089C917 /* DFPBidMachineFetcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DFPBidMachineFetcher.h; sourceTree = "<group>"; };
+		42E5556A2366F2BC0089C917 /* DFPBidMachineFetcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DFPBidMachineFetcher.m; sourceTree = "<group>"; };
 		4BF3F9D80DCCECD043B40FB6 /* Pods-BidMachineAdapter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BidMachineAdapter.release.xcconfig"; path = "Target Support Files/Pods-BidMachineAdapter/Pods-BidMachineAdapter.release.xcconfig"; sourceTree = "<group>"; };
 		60409323F36DE76172B558F6 /* Pods-AdMobBidMachineSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobBidMachineSample.release.xcconfig"; path = "Target Support Files/Pods-AdMobBidMachineSample/Pods-AdMobBidMachineSample.release.xcconfig"; sourceTree = "<group>"; };
 		709BF3846C121BA356C7EB81 /* Pods-AdMobBidMachineSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdMobBidMachineSample.debug.xcconfig"; path = "Target Support Files/Pods-AdMobBidMachineSample/Pods-AdMobBidMachineSample.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,6 +113,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		42E555682366F2860089C917 /* DFP */ = {
+			isa = PBXGroup;
+			children = (
+				42E555692366F2BC0089C917 /* DFPBidMachineFetcher.h */,
+				42E5556A2366F2BC0089C917 /* DFPBidMachineFetcher.m */,
+			);
+			name = DFP;
+			sourceTree = "<group>";
+		};
 		D58118BF3C2C1EA19BABCEEF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +160,8 @@
 				D9129672228AA8D1002A8C51 /* AppDelegate.m */,
 				D9129674228AA8D1002A8C51 /* ViewController.h */,
 				D9129675228AA8D1002A8C51 /* ViewController.m */,
+				42E555652366EDC70089C917 /* AdManagerViewController.h */,
+				42E555662366EDC70089C917 /* AdManagerViewController.m */,
 				D9129677228AA8D1002A8C51 /* Main.storyboard */,
 				D912967A228AA8D2002A8C51 /* Assets.xcassets */,
 				D912967C228AA8D2002A8C51 /* LaunchScreen.storyboard */,
@@ -157,6 +174,7 @@
 		D912968C228AAB01002A8C51 /* BidMachineAdapter */ = {
 			isa = PBXGroup;
 			children = (
+				42E555682366F2860089C917 /* DFP */,
 				4216C1B022FD9CB50030C5DA /* Models */,
 				D9FB5649228D85AD00D84AF7 /* Utils */,
 				D9129697228ABE49002A8C51 /* BidMachineCustomEventBanner.h */,
@@ -371,6 +389,7 @@
 				D9129676228AA8D1002A8C51 /* ViewController.m in Sources */,
 				D9129681228AA8D2002A8C51 /* main.m in Sources */,
 				D9129673228AA8D1002A8C51 /* AppDelegate.m in Sources */,
+				42E555672366EDC70089C917 /* AdManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +401,7 @@
 				4216C1B322FD9CEB0030C5DA /* GADBidMachineHeaderBiddingConfig.m in Sources */,
 				D91296A2228AEE7C002A8C51 /* GADBidMachineNetworkExtras.m in Sources */,
 				D912969C228ABFFD002A8C51 /* GADBidMachineUtils.m in Sources */,
+				42E5556B2366F2BC0089C917 /* DFPBidMachineFetcher.m in Sources */,
 				D912969F228ADCBB002A8C51 /* GADBidMachineUtils+Request.m in Sources */,
 				D91296A9228BF782002A8C51 /* GADMBidMachineRewardedAd.m in Sources */,
 				4216C1AF22FD9A2F0030C5DA /* GADBidMachineTransformer.m in Sources */,

@@ -11,9 +11,9 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 
 
-FOUNDATION_EXPORT NSString *const kGADBidMachineErrorDomain;
-
 @interface GADBidMachineUtils : NSObject
+
+@property (nonatomic, assign, readonly) BOOL isAdManagerApp;
 
 + (instancetype)sharedUtils;
 

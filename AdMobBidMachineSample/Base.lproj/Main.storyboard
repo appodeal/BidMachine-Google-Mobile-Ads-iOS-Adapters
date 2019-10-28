@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DefaultViewController" id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,6 +83,83 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="131"/>
+        </scene>
+        <!--Ad Manager View Controller-->
+        <scene sceneID="d8D-3N-d6M">
+            <objects>
+                <viewController storyboardIdentifier="AdManagerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NXh-z9-Bp8" customClass="AdManagerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2G1-vG-GAS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MvC-JA-fdI">
+                                <rect key="frame" x="164" y="582.5" width="86" height="30"/>
+                                <state key="normal" title="Load banner"/>
+                                <connections>
+                                    <action selector="loadBanner:" destination="NXh-z9-Bp8" eventType="touchUpInside" id="ZXl-CV-lN6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aye-jn-lMC">
+                                <rect key="frame" x="51" y="632" width="105" height="30"/>
+                                <state key="normal" title="Load interstitial"/>
+                                <connections>
+                                    <action selector="loadInterstitial:" destination="NXh-z9-Bp8" eventType="touchUpInside" id="bsv-dc-21a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DoR-sL-fz6">
+                                <rect key="frame" x="52.5" y="682" width="102" height="30"/>
+                                <state key="normal" title="Load rewarded"/>
+                                <connections>
+                                    <action selector="loadRewarded:" destination="NXh-z9-Bp8" eventType="touchUpInside" id="YOd-2Y-0t9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67V-D4-5ED">
+                                <rect key="frame" x="257" y="682" width="107" height="30"/>
+                                <state key="normal" title="Show rewarded"/>
+                                <connections>
+                                    <action selector="showRewarded:" destination="NXh-z9-Bp8" eventType="touchUpInside" id="ffu-7W-wGI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZS-o0-Xt5">
+                                <rect key="frame" x="256" y="632" width="109" height="30"/>
+                                <state key="normal" title="Show interstitial"/>
+                                <connections>
+                                    <action selector="showInterstitial:" destination="NXh-z9-Bp8" eventType="touchUpInside" id="Gl2-5l-dib"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AdManager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRh-jQ-5tU">
+                                <rect key="frame" x="168" y="108" width="78" height="17"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZRh-jQ-5tU" firstAttribute="top" secondItem="bi9-xb-JaJ" secondAttribute="top" constant="64" id="1SP-Aa-C4M"/>
+                            <constraint firstItem="KZS-o0-Xt5" firstAttribute="centerY" secondItem="2G1-vG-GAS" secondAttribute="centerY" multiplier="13/9" id="6YQ-fk-xYo"/>
+                            <constraint firstItem="MvC-JA-fdI" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" id="96A-wW-oMM"/>
+                            <constraint firstItem="aye-jn-lMC" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" multiplier="1/2" id="AbX-OR-3De"/>
+                            <constraint firstItem="67V-D4-5ED" firstAttribute="centerY" secondItem="2G1-vG-GAS" secondAttribute="centerY" multiplier="14/9" id="Chz-fy-AE6"/>
+                            <constraint firstItem="67V-D4-5ED" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" multiplier="3/2" id="JwW-JU-FPE"/>
+                            <constraint firstItem="DoR-sL-fz6" firstAttribute="centerY" secondItem="2G1-vG-GAS" secondAttribute="centerY" multiplier="14/9" id="Sel-Is-134"/>
+                            <constraint firstItem="aye-jn-lMC" firstAttribute="centerY" secondItem="2G1-vG-GAS" secondAttribute="centerY" multiplier="13/9" id="V7H-Tz-K0q"/>
+                            <constraint firstItem="DoR-sL-fz6" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" multiplier="1/2" id="Ycp-qA-ayf"/>
+                            <constraint firstItem="ZRh-jQ-5tU" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" id="dad-qW-rfw"/>
+                            <constraint firstItem="KZS-o0-Xt5" firstAttribute="centerX" secondItem="2G1-vG-GAS" secondAttribute="centerX" multiplier="3/2" id="fM1-Rw-s4i"/>
+                            <constraint firstItem="MvC-JA-fdI" firstAttribute="centerY" secondItem="2G1-vG-GAS" secondAttribute="centerY" multiplier="4/3" id="z2a-0r-Mu4"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bi9-xb-JaJ"/>
+                    </view>
+                    <connections>
+                        <outlet property="showInterstitialButton" destination="KZS-o0-Xt5" id="GiJ-na-hPg"/>
+                        <outlet property="showRewardedButton" destination="67V-D4-5ED" id="N9I-dN-82Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BQp-Fp-3ng" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="830" y="131"/>
         </scene>
     </scenes>
 </document>
