@@ -8,6 +8,9 @@
 
 #import "BidMachineCustomEventInterstitial.h"
 #import "GADBidMachineUtils+Request.h"
+#import "GADMAdapterBidMachineConstants.h"
+#import "DFPBidMachineFetcher.h"
+
 #import <BidMachine/BidMachine.h>
 
 
@@ -23,14 +26,31 @@
 - (void)requestInterstitialAdWithParameter:(NSString *)serverParameter
                                      label:(NSString *)serverLabel
                                    request:(GADCustomEventRequest *)request {
-    __weak typeof(self) weakSelf = self;
     NSDictionary *requestInfo = [GADBidMachineUtils.sharedUtils requestInfoFrom:serverParameter
                                                                         request:request];
-    [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo completion:^(NSError *error) {
-        weakSelf.interstitial.delegate = weakSelf;
-        BDMInterstitialRequest *request = [GADBidMachineUtils.sharedUtils interstitialRequestWithRequestInfo:requestInfo];
-        [weakSelf.interstitial populateWithRequest:request];
-    }];
+    if (GADBidMachineUtils.sharedUtils.isAdManagerApp) {
+        id request = [DFPBidMachineFetcher.sharedFetcher requestForBidId:requestInfo[kBidMachineBidId]];
+        if ([request isKindOfClass:BDMInterstitialRequest.self]) {
+            [self.interstitial populateWithRequest:request];
+        } else {
+            NSDictionary *userInfo =
+            @{
+                NSLocalizedFailureReasonErrorKey: @"BidMachine request type not satisfying",
+                NSLocalizedDescriptionKey: @"BidMachineCustomEventInterstitial requires to use BDMInterstitialRequest",
+                NSLocalizedRecoverySuggestionErrorKey: @"Check that you pass customTargeting to DFPRequest from BDMInterstitialRequest"
+            };
+            NSError *error =  [NSError errorWithDomain:kGADBidMachineErrorDomain
+                                                  code:0
+                                              userInfo:userInfo];
+            [self.delegate customEventInterstitial:self didFailAd:error];
+        }
+    } else {
+        __weak typeof(self) weakSelf = self;
+        [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo completion:^(NSError *error) {
+            BDMInterstitialRequest *request = [GADBidMachineUtils.sharedUtils interstitialRequestWithRequestInfo:requestInfo];
+            [weakSelf.interstitial populateWithRequest:request];
+        }];
+    }
 }
 
 - (void)presentFromRootViewController:(UIViewController *)rootViewController {

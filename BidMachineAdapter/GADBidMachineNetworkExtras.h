@@ -111,6 +111,10 @@
 
 @property (nonatomic, copy) NSArray <GADBidMachineHeaderBiddingConfig *> *headerBiddingConfigs;
 /**
+ Bid identifier
+ */
+@property (nonatomic, copy) NSString *bidID;
+/**
  Creates dictionary from properties.
  */
 - (NSDictionary *)allExtras;

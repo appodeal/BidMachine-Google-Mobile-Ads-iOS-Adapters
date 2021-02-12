@@ -9,6 +9,8 @@
 #import "BidMachineCustomEventBanner.h"
 #import "GADBidMachineUtils+Request.h"
 #import "GADBidMachineTransformer.h"
+#import "DFPBidMachineFetcher.h"
+#import "GADMAdapterBidMachineConstants.h"
 
 #import <BidMachine/BidMachine.h>
 
@@ -28,14 +30,32 @@
                 request:(GADCustomEventRequest *)request {
     NSDictionary *requestInfo = [GADBidMachineUtils.sharedUtils requestInfoFrom:serverParameter
                                                                         request:request];
-    __weak typeof(self) weakSelf = self;
-    [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo completion:^(NSError *error) {
-        BDMBannerAdSize size = [GADBidMachineTransformer adSizeFromGADAdSize:adSize];
-        BDMBannerRequest *request = [GADBidMachineUtils.sharedUtils bannerRequestWithSize:size
-                                                                              requestInfo:requestInfo];
-        [weakSelf.bannerView setFrame:CGRectMake(0, 0, adSize.size.width, adSize.size.height)];
-        [weakSelf.bannerView populateWithRequest:request];
-    }];
+    if (GADBidMachineUtils.sharedUtils.isAdManagerApp) {
+        id request = [DFPBidMachineFetcher.sharedFetcher requestForBidId:requestInfo[kBidMachineBidId]];
+        if ([request isKindOfClass:BDMBannerRequest.self]) {
+            [self.bannerView populateWithRequest:request];
+        } else {
+            NSDictionary *userInfo =
+            @{
+                NSLocalizedFailureReasonErrorKey: @"BidMachine request type not satisfying",
+                NSLocalizedDescriptionKey: @"BidMachineCustomEventBanner requires to use BDMBannerRequest",
+                NSLocalizedRecoverySuggestionErrorKey: @"Check that you pass customTargeting to DFPRequest from BDMBannerRequest"
+            };
+            NSError *error =  [NSError errorWithDomain:kGADBidMachineErrorDomain
+                                                  code:0
+                                              userInfo:userInfo];
+            [self.delegate customEventBanner:self didFailAd:error];
+        }
+    } else {
+        __weak typeof(self) weakSelf = self;
+        [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo completion:^(NSError *error) {
+            BDMBannerAdSize size = [GADBidMachineTransformer adSizeFromGADAdSize:adSize];
+            BDMBannerRequest *request = [GADBidMachineUtils.sharedUtils bannerRequestWithSize:size
+                                                                                  requestInfo:requestInfo];
+            [weakSelf.bannerView setFrame:CGRectMake(0, 0, adSize.size.width, adSize.size.height)];
+            [weakSelf.bannerView populateWithRequest:request];
+        }];
+    }
 }
 
 #pragma mark - Lazy

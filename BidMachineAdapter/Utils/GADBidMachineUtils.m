@@ -16,7 +16,6 @@
 #import <BidMachine/BDMSdkConfiguration+HeaderBidding.h>
 
 
-NSString *const kGADBidMachineErrorDomain = @"com.google.mediation.bidmachine";
 
 
 @interface GADBidMachineUtils ()
@@ -33,6 +32,10 @@ NSString *const kGADBidMachineErrorDomain = @"com.google.mediation.bidmachine";
         _sharedUtils = GADBidMachineUtils.new;
     });
     return _sharedUtils;
+}
+
+- (BOOL)isAdManagerApp {
+    return [[[[NSBundle bundleForClass:self.class] infoDictionary] objectForKey:@"GADIsAdManagerApp"] boolValue];
 }
 
 - (void)initializeBidMachineWithRequestInfo:(NSDictionary *)requestInfo

@@ -10,6 +10,8 @@
 #import "GADMAdapterBidMachineConstants.h"
 #import "GADBidMachineNetworkExtras.h"
 #import "GADBidMachineUtils+Request.h"
+#import "DFPBidMachineFetcher.h"
+
 #import <BidMachine/BidMachine.h>
 
 
@@ -47,15 +49,33 @@
 - (void)setUp {
     id<GADMRewardBasedVideoAdNetworkConnector> strongConnector = self.rewardedAdConnector;
     NSDictionary *requestInfo = [GADBidMachineUtils.sharedUtils requestInfoFromConnector:strongConnector];
-    __weak typeof(self) weakSelf = self;
-    [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo
-                                                             completion:^(NSError *error) {
-                                                                 if (!error) {
-                                                                     [weakSelf.rewardedAdConnector adapterDidSetUpRewardBasedVideoAd:weakSelf];
-                                                                 } else {
-                                                                     [weakSelf.rewardedAdConnector adapter:weakSelf didFailToSetUpRewardBasedVideoAdWithError:error];
-                                                                 }
-                                                             }];
+    if (GADBidMachineUtils.sharedUtils.isAdManagerApp) {
+        id request = [DFPBidMachineFetcher.sharedFetcher requestForBidId:requestInfo[kBidMachineBidId]];
+        if ([request isKindOfClass:BDMRewardedRequest.self]) {
+            [self.rewardedAd populateWithRequest:request];
+        } else {
+            NSDictionary *userInfo =
+            @{
+                NSLocalizedFailureReasonErrorKey: @"BidMachine request type not satisfying",
+                NSLocalizedDescriptionKey: @"GADMBidMachineRewardedAd requires to use BDMRewardedRequest",
+                NSLocalizedRecoverySuggestionErrorKey: @"Check that you pass customTargeting to DFPRequest from BDMRewardedRequest"
+            };
+            NSError *error =  [NSError errorWithDomain:kGADBidMachineErrorDomain
+                                                  code:0
+                                              userInfo:userInfo];
+            [self.rewardedAdConnector adapter:self didFailToSetUpRewardBasedVideoAdWithError:error];
+        }
+    } else {
+        __weak typeof(self) weakSelf = self;
+        [GADBidMachineUtils.sharedUtils initializeBidMachineWithRequestInfo:requestInfo
+                                                                 completion:^(NSError *error) {
+            if (!error) {
+                [weakSelf.rewardedAdConnector adapterDidSetUpRewardBasedVideoAd:weakSelf];
+            } else {
+                [weakSelf.rewardedAdConnector adapter:weakSelf didFailToSetUpRewardBasedVideoAdWithError:error];
+            }
+        }];
+    }
 }
 
 - (void)requestRewardBasedVideoAd {
